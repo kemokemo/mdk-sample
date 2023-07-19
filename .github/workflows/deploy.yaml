@@ -23,10 +23,10 @@ jobs:
         with:
           arguments: build
       - name: Deploy a jar file
-        run: |
-          zip -r EasyEmerald.zip libs
-          gh release create $GITHUB_REF_NAME EasyEmerald.zip
+        run: gh release create $GITHUB_REF_NAME *.jar
         env:
+          # before using this, please set 'read and write permissions'
+          # on the Action settings page of repo.
           GITHUB_TOKEN: ${{ github.TOKEN }}
         shell: bash
-        working-directory: build
+        working-directory: build/libs
